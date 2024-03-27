@@ -17,13 +17,13 @@ export const Modal: React.FC<Props> = (props: Props) => {
 
   return (
     <div
-      className={`absolute-center bg-neutral-200 dark:bg-neutral-800 rounded-lg p-4 duration-150 transition-opacity ${isClosing ? "opacity-0" : ""} ${props.className || ""}`}
+      className={`absolute-center blur-none bg-neutral-200 dark:bg-neutral-800 rounded-lg p-4 duration-150 transition-opacity ${isClosing ? "opacity-0" : ""} ${props.className || ""}`}
       style={{ zIndex: props.zIndex || 5 }}
     >
       <div className="flex justify-between items-center mb-2">
         <div className="flex items-center">
-          {props.icon || <HOS className="mr-2 size-7 rounded-lg" />}
-          <p className="text-lg">{props.title || "Modal"}</p>
+          {props.icon || <HOS className="mr-2 size-5 rounded-lg" />}
+          <p>{props.title || "Modal"}</p>
         </div>
 
         <button
@@ -33,7 +33,7 @@ export const Modal: React.FC<Props> = (props: Props) => {
           }}
           className="cursor-pointer"
         >
-          <XMarkIcon className="size-7 dark:text-white hover:text-neutral-500 duration-100" />
+          <XMarkIcon className="size-5 dark:text-white hover:text-neutral-500 duration-100" />
         </button>
       </div>
 

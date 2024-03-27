@@ -1,50 +1,32 @@
-import { HOS } from "@/components/icons/HOS";
-import { Button } from "@/components/ui/Button";
 import { Spinner } from "@/components/ui/Spinner";
-import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
 import { DesktopBrowser } from "@/components/ui/DesktopBrowser";
 import { MobileBrowser } from "@/components/ui/MobileBrowser";
+import { Navbar } from "@/components/ui/Navbar";
+import { useState } from "react";
 
 export const Index: React.FC = () => {
+  const [virusMoment, setVirusMoment] = useState(false);
+
   return (
     <>
-      <DesktopBrowser>
-        <div className="flex items-center justify-between mx-16 my-8">
-          <div className="flex items-center">
-            <Button className="mr-3">Random</Button>
+      <Navbar
+        onVirusMoment={() => setVirusMoment(true)}
+        onVirusMomentClose={() => setVirusMoment(false)}
+      />
 
-            <ThemeSwitch />
+      <div className={virusMoment ? "blur-sm" : ""}>
+        <DesktopBrowser>
+          <div className="absolute-center">
+            <Spinner />
           </div>
+        </DesktopBrowser>
 
-          <div className="flex items-center">
-            <HOS className="size-12 mr-3 rounded-lg" />
-
-            <p className="text-4xl animate-gradient">
-              <strong>sqd's hall of shame</strong>
-            </p>
+        <MobileBrowser>
+          <div className="absolute-center">
+            <Spinner />
           </div>
-        </div>
-
-        <div className="absolute-center">
-          <Spinner />
-        </div>
-      </DesktopBrowser>
-
-      <MobileBrowser>
-        <div className="flex items-center justify-between mx-8 my-8">
-          <div className="flex items-center">
-            <Button className="mr-3">Random</Button>
-
-            <ThemeSwitch />
-          </div>
-
-          <HOS className="size-12 mr-3 rounded-lg" />
-        </div>
-
-        <div className="absolute-center">
-          <Spinner />
-        </div>
-      </MobileBrowser>
+        </MobileBrowser>
+      </div>
     </>
   );
 };

@@ -3,36 +3,37 @@ import { useState } from "react";
 
 interface Props {
   className?: string;
+  onClick?: () => never | void;
 }
 
-export const ThemeSwitch: React.FC<Props> = ({ className }: Props) => {
+export const ThemeSwitch: React.FC<Props> = (props: Props) => {
   const [currentTheme, setCurrentTheme] = useState("dark");
 
   setInterval(() => setCurrentTheme(localStorage.getItem("theme") || "dark"));
 
   return (
     <button
-      onClick={() =>
+      onClick={() => {
         localStorage.setItem(
           "theme",
           currentTheme === "dark" ? "light" : "dark",
-        )
-      }
+        );
+
+        if (props.onClick) props.onClick();
+      }}
       className="cursor-pointer"
     >
-      {currentTheme === "dark" ? (
-        <div className="duration-150 hover:bg-black hover:bg-opacity-30 dark:hover:bg-white dark:hover:bg-opacity-20 p-1 rounded-lg">
+      <div className="duration-150 hover:bg-black hover:bg-opacity-30 dark:hover:bg-white dark:hover:bg-opacity-20 p-1 rounded-lg">
+        {currentTheme === "dark" ? (
           <SunIcon
-            className={`size-9 text-black dark:text-white ${className}`}
+            className={`size-9 text-black dark:text-white ${props.className}`}
           />
-        </div>
-      ) : (
-        <div className="duration-150 hover:bg-black hover:bg-opacity-30 dark:hover:bg-white dark:hover:bg-opacity-20 p-1 rounded-lg">
+        ) : (
           <MoonIcon
-            className={`size-9 text-black dark:text-white ${className}`}
+            className={`size-9 text-black dark:text-white ${props.className}`}
           />
-        </div>
-      )}
+        )}
+      </div>
     </button>
   );
 };
