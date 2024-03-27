@@ -5,7 +5,7 @@ interface Props {
 export const Spinner: React.FC<Props> = ({ className }: Props) => {
   return (
     <div
-      className={`border-x-4 border-y-4 rounded-full border-x-fuchsia-500 border-y-blue-500 p-4 animate-spin-faster ${className || ""}`}
+      className={`border-r-4 border-l-4 border-t-4 border-b-4 rounded-full border-r-[#2674f0] border-l-[#f21b22] border-t-[#33d12e] border-b-[#f2f222] p-4 animate-spin-faster ${className || ""}`}
     />
   );
 };

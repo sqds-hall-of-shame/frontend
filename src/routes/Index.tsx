@@ -1,4 +1,5 @@
 import { HOS } from "@/components/icons/HOS";
+import { Spinner } from "@/components/ui/Spinner";
 
 export const Index: React.FC = () => {
   return (
@@ -9,6 +10,10 @@ export const Index: React.FC = () => {
         <p className="text-4xl animate-gradient">
           <strong>sqd's hall of shame</strong>
         </p>
+      </div>
+
+      <div className="absolute-center">
+        <Spinner />
       </div>
     </>
   );
