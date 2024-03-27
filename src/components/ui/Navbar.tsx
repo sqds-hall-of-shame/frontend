@@ -4,6 +4,7 @@ import { DesktopBrowser } from "@/components/ui/DesktopBrowser";
 import { MobileBrowser } from "@/components/ui//MobileBrowser";
 import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
 import { VirusMoment } from "@/components/modals/VirusMoment";
+import { MusicToggle } from "@/components/ui/MusicToggle";
 import { isMobile } from "@/utils/isMobile";
 import { useState } from "react";
 
@@ -35,7 +36,7 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                   presses++;
                   setTimeout(() => presses--, 2000);
 
-                  if (presses >= 2) {
+                  if (presses >= 10) {
                     props.onVirusMoment();
                     setVirusMoment(true);
                     presses = 1;
@@ -43,6 +44,8 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                 }
               }}
             />
+
+            <MusicToggle />
           </div>
 
           <div className="flex items-center">

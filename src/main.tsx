@@ -3,6 +3,14 @@ import ReactDOM from "react-dom/client";
 import Router from "./Router.tsx";
 import "./styles/index.css";
 
+const music = document.getElementById(
+  "music-audio-element",
+)! as HTMLAudioElement;
+
+if (localStorage.getItem("music-timestamp")) {
+  music.currentTime = Number(localStorage.getItem("music-timestamp")!);
+}
+
 setInterval(() => {
   if (
     localStorage.theme === "dark" ||
@@ -11,11 +19,9 @@ setInterval(() => {
   ) {
     document.documentElement.classList.add("dark", "bg-[#111111]");
     localStorage.setItem("theme", "dark");
-
-    return;
+  } else {
+    document.documentElement.classList.remove("dark", "bg-[#111111]");
   }
-
-  document.documentElement.classList.remove("dark", "bg-[#111111]");
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
