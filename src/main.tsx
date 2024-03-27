@@ -10,6 +10,8 @@ setInterval(() => {
       window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     document.documentElement.classList.add("dark", "bg-[#111111]");
+    localStorage.setItem("theme", "dark");
+
     return;
   }
 
