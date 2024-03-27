@@ -1,0 +1,46 @@
+.absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.text-invert {
+  color: invert(1);
+  background-color: inherit;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-faster {
+  animation: spin 0.5s linear infinite;
+}
+
+.animate-gradient {
+  background: linear-gradient(
+      to right,
+      #2674f0 0%,
+      #f21b22 20%,
+      #33d12e 40%,
+      #f2f2f2 60%,
+      #f2f222 80%,
+      #2674f0 100%
+    )
+    0 0 / 500% 100%;
+  background-size: 500% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: gradient 12.5s infinite linear;
+}
+
+@keyframes gradient {
+  to {
+    background-position: 500% 0;
+  }
+}
