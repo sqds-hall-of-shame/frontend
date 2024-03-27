@@ -1,5 +1,4 @@
 import { MusicalNoteIcon } from "@heroicons/react/24/outline";
-import { useEffect } from "react";
 
 interface Props {
   className?: string;
@@ -7,17 +6,7 @@ interface Props {
 }
 
 export const MusicToggle: React.FC<Props> = (props: Props) => {
-  useEffect(() => {
-    const music = document.getElementById(
-      "music-audio-element",
-    )! as HTMLAudioElement;
-
-    setInterval(() => {
-      if (!music.paused) {
-        localStorage.setItem("music-timestamp", String(music.currentTime));
-      }
-    });
-  }, []);
+  let interval = 0;
 
   return (
     <button
@@ -32,8 +21,18 @@ export const MusicToggle: React.FC<Props> = (props: Props) => {
 
         if (music.paused) {
           music.play();
+
+          interval = setInterval(() => {
+            if (!music.paused) {
+              localStorage.setItem(
+                "music-timestamp",
+                String(music.currentTime),
+              );
+            }
+          });
         } else {
           music.pause();
+          clearInterval(interval);
         }
 
         if (props.onClick) {
