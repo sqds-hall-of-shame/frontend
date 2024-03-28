@@ -5,6 +5,6 @@ interface Props {
 }
 
 export const DesktopBrowser: React.FC<Props> = ({ children }: Props) =>
-  !isMobile() ? children : <></>;
+  !isMobile() && children;
 
 export default DesktopBrowser;

@@ -1,13 +1,6 @@
 import { MusicalNoteIcon } from "@heroicons/react/24/outline";
 
-interface Props {
-  className?: string;
-  onClick?: () => never | void;
-}
-
-export const MusicToggle: React.FC<Props> = (props: Props) => {
-  let interval = 0;
-
+export const MusicToggle: React.FC = () => {
   return (
     <button
       onClick={() => {
@@ -15,28 +8,10 @@ export const MusicToggle: React.FC<Props> = (props: Props) => {
           "music-audio-element",
         )! as HTMLAudioElement;
 
-        if (music.ended) {
-          music.currentTime = 0;
-        }
-
         if (music.paused) {
           music.play();
-
-          interval = setInterval(() => {
-            if (!music.paused) {
-              localStorage.setItem(
-                "music-timestamp",
-                String(music.currentTime),
-              );
-            }
-          });
         } else {
           music.pause();
-          clearInterval(interval);
-        }
-
-        if (props.onClick) {
-          props.onClick();
         }
       }}
       className="cursor-pointer"

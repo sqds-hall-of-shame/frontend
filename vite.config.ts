@@ -7,7 +7,14 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   server: {
     proxy: {
-      "/cdn": "http://localhost:8080",
+      "/cdn":
+        "https://add5-2409-40e5-13-8744-6ea6-d198-8d49-6030.ngrok-free.app/",
+      "/api": {
+        target:
+          "https://add5-2409-40e5-13-8744-6ea6-d198-8d49-6030.ngrok-free.app/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
     },
   },
 });

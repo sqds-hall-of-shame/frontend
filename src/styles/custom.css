@@ -38,6 +38,23 @@
   animation: gradient 12.5s infinite linear;
 }
 
+.animate-gradient-faster {
+  background: linear-gradient(
+      to right,
+      #2674f0 0%,
+      #f21b22 25%,
+      #33d12e 50%,
+      #f2f222 75%,
+      #2674f0 100%
+    )
+    0 0 / 500% 100%;
+  background-size: 500% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: gradient 8s infinite linear;
+}
+
 @keyframes gradient {
   to {
     background-position: 500% 0;

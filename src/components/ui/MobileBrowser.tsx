@@ -5,6 +5,6 @@ interface Props {
 }
 
 export const MobileBrowser: React.FC<Props> = ({ children }: Props) =>
-  isMobile() ? children : <></>;
+  isMobile() && children;
 
 export default MobileBrowser;
