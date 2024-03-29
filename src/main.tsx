@@ -11,16 +11,15 @@ setInterval(() => {
   if (localStorage.theme === "dark") {
     document.documentElement.classList.add("dark", "bg-[#0a0a0a]");
     document.documentElement.classList.remove("bg-gradient");
-    return;
+  } else {
+    document.documentElement.classList.remove("dark", "bg-[#0a0a0a]");
+    document.documentElement.classList.add("bg-gradient");
   }
 
-  document.documentElement.classList.remove("dark", "bg-[#0a0a0a]");
-  document.documentElement.classList.add("bg-gradient");
-
-  if (localStorage.getItem("scrollbar-hidden") === "true") {
-    extraStyleElement.innerHTML = "::-webkit-scrollbar { width: 0; }";
-  } else {
+  if (localStorage.getItem("scrollbar-shown") === "true") {
     extraStyleElement.innerHTML = "";
+  } else {
+    extraStyleElement.innerHTML = "::-webkit-scrollbar { width: 0; }";
   }
 });
 

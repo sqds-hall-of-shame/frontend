@@ -1,4 +1,5 @@
 import { MusicalNoteIcon } from "@heroicons/react/16/solid";
+import { isMobile } from "@/utils/isMobile";
 
 export const MusicToggle: React.FC = () => (
   <button
@@ -15,7 +16,9 @@ export const MusicToggle: React.FC = () => (
     }}
     className="cursor-pointer"
   >
-    <div className="duration-150 hover:bg-black hover:bg-opacity-30 dark:hover:bg-white dark:hover:bg-opacity-20 p-2 rounded-lg">
+    <div
+      className={`duration-150 ${isMobile() ? "text-black" : "hover:bg-black hover:bg-opacity-30 dark:hover:bg-white dark:hover:bg-opacity-20"} p-2 rounded-lg`}
+    >
       <MusicalNoteIcon className="size-7 text-white" />
     </div>
   </button>

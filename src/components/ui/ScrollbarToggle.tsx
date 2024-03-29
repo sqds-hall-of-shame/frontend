@@ -3,12 +3,12 @@ import { ChevronUpDownIcon } from "@heroicons/react/16/solid";
 export const ScrollbarToggle: React.FC = () => (
   <button
     onClick={() => {
-      if (localStorage.getItem("scrollbar-hidden") === "true") {
-        localStorage.removeItem("scrollbar-hidden");
+      if (localStorage.getItem("scrollbar-shown") === "true") {
+        localStorage.removeItem("scrollbar-shown");
         return;
       }
 
-      localStorage.setItem("scrollbar-hidden", "true");
+      localStorage.setItem("scrollbar-shown", "true");
     }}
     className="cursor-pointer"
   >
