@@ -4,6 +4,7 @@ import { DesktopBrowser } from "@/components/ui/DesktopBrowser";
 import { MobileBrowser } from "@/components/ui//MobileBrowser";
 import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
 import { MusicToggle } from "@/components/ui/MusicToggle";
+import { ScrollbarToggle } from "./ScrollbarToggle";
 import { useState } from "react";
 
 const titleEasterEggs = [
@@ -75,13 +76,14 @@ export const Navbar: React.FC = () => {
     <>
       <DesktopBrowser>
         <div className="mb-[150px]">
-          <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-white bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
+          <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-black bg-opacity-[75%] dark:bg-white dark:bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
             <nav className="flex items-center text-center justify-between w-full my-8 ml-24">
               <div className="flex items-center">
                 <Button className="mr-3">Random</Button>
 
                 <ThemeSwitch />
                 <MusicToggle />
+                <ScrollbarToggle />
               </div>
 
               <div className="flex items-center">
@@ -100,11 +102,11 @@ export const Navbar: React.FC = () => {
                     }}
                     onMouseLeave={() => setIsTitleHovered(false)}
                   >
-                    <p className="text-4xl blur-[10px] select-none animate-gradient">
+                    <p className="text-4xl blur-[10px] select-none text-gradient">
                       <strong>sqd's hall of shame</strong>
                     </p>
 
-                    <p className="absolute inset-0 z-10 text-4xl select-none animate-gradient">
+                    <p className="absolute inset-0 z-10 text-4xl select-none text-gradient">
                       <strong>sqd's hall of shame</strong>
                     </p>
                   </div>

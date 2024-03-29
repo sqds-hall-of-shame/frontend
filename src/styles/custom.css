@@ -1,10 +1,5 @@
-:root {
-  --scrollbar-track-color: transparent;
-  --scrollbar-thumb-color: transparent;
-}
-
 .absolute-center {
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -26,7 +21,7 @@
   animation: spin 0.6s linear infinite;
 }
 
-.animate-gradient {
+.text-gradient {
   background: linear-gradient(
       to right,
       #2674f0 0%,
@@ -40,24 +35,25 @@
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  animation: gradient 12.5s infinite linear reverse;
+  animation: ltr-gradient 12.5s infinite linear reverse;
 }
 
-@keyframes gradient {
+.bg-gradient {
+  background: linear-gradient(
+      to right,
+      #80a8e8 0%,
+      #eda1a4 25%,
+      #87c486 50%,
+      #f2f28f 75%,
+      #80a8e8 100%
+    )
+    0 0 / 500% 100%;
+  color: transparent;
+  animation: ltr-gradient 120s infinite linear reverse;
+}
+
+@keyframes ltr-gradient {
   to {
     background-position: 500% 0;
   }
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--scrollbar-track-color);
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background: var(--scrollbar-thumb-color);
 }

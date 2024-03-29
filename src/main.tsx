@@ -3,34 +3,25 @@ import ReactDOM from "react-dom/client";
 import Router from "./Router.tsx";
 import "./styles/index.css";
 
+const extraStyleElement = document.getElementById(
+  "extra-style",
+)! as HTMLStyleElement;
+
 setInterval(() => {
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
+  if (localStorage.theme === "dark") {
     document.documentElement.classList.add("dark", "bg-[#0a0a0a]");
-    document.documentElement.style.setProperty(
-      "--scrollbar-track-color",
-      "#212121",
-    );
-    document.documentElement.style.setProperty(
-      "--scrollbar-thumb-color",
-      "#f2f2f2",
-    );
-    localStorage.setItem("theme", "dark");
+    document.documentElement.classList.remove("bg-gradient");
     return;
   }
 
   document.documentElement.classList.remove("dark", "bg-[#0a0a0a]");
-  document.documentElement.style.setProperty(
-    "--scrollbar-track-color",
-    "#979797",
-  );
-  document.documentElement.style.setProperty(
-    "--scrollbar-thumb-color",
-    "#3b3b3b",
-  );
+  document.documentElement.classList.add("bg-gradient");
+
+  if (localStorage.getItem("scrollbar-hidden") === "true") {
+    extraStyleElement.innerHTML = "::-webkit-scrollbar { width: 0; }";
+  } else {
+    extraStyleElement.innerHTML = "";
+  }
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
