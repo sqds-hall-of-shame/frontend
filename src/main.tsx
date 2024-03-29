@@ -9,7 +9,7 @@ setInterval(() => {
     (!("theme" in localStorage) &&
       window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
-    document.documentElement.classList.add("dark", "bg-[#111111]");
+    document.documentElement.classList.add("dark", "bg-[#0a0a0a]");
     document.documentElement.style.setProperty(
       "--scrollbar-track-color",
       "#212121",
@@ -22,7 +22,7 @@ setInterval(() => {
     return;
   }
 
-  document.documentElement.classList.remove("dark", "bg-[#111111]");
+  document.documentElement.classList.remove("dark", "bg-[#0a0a0a]");
   document.documentElement.style.setProperty(
     "--scrollbar-track-color",
     "#979797",

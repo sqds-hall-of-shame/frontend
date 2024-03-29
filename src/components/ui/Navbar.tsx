@@ -75,7 +75,7 @@ export const Navbar: React.FC = () => {
     <>
       <DesktopBrowser>
         <div className="mb-[150px]">
-          <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-white bg-opacity-[3%] duration-150 rounded-3xl">
+          <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-white bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
             <nav className="flex items-center text-center justify-between w-full my-8 ml-24">
               <div className="flex items-center">
                 <Button className="mr-3">Random</Button>
