@@ -135,16 +135,20 @@ export const Navbar: React.FC = () => {
       </DesktopBrowser>
 
       <MobileBrowser>
-        <nav className="flex items-center justify-between mx-8 my-8">
-          <div className="flex items-center">
-            <Button className="mr-3">Random</Button>
+        <div className="mb-[120px]">
+          <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-black bg-opacity-[75%] dark:bg-white dark:bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
+            <nav className="flex items-center text-center justify-between w-full m-4">
+              <div className="flex items-center">
+                <Button className="mr-3">Random</Button>
 
-            <ThemeSwitch />
-            <MusicToggle />
+                <ThemeSwitch />
+                <MusicToggle />
+              </div>
+
+              <HOS className="size-12 mr-3 rounded-lg" />
+            </nav>
           </div>
-
-          <HOS className="size-12 mr-3 rounded-lg" />
-        </nav>
+        </div>
       </MobileBrowser>
     </>
   );
