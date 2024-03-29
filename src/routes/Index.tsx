@@ -9,9 +9,58 @@ export const Index: React.FC = () => {
       <Navbar />
 
       <DesktopBrowser>
-        <div className="absolute-center">
-          <Spinner />
-        </div>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
+        <p>s</p>
       </DesktopBrowser>
 
       <MobileBrowser>

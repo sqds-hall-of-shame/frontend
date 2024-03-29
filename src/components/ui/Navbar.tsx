@@ -62,6 +62,7 @@ const titleEasterEggs = [
   "o_o",
   "O_O",
   "O-O",
+  "˶ᵔᵕᵔ˶",
 ];
 
 export const Navbar: React.FC = () => {
@@ -73,55 +74,59 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <DesktopBrowser>
-        <nav className="flex items-center justify-between ml-20 mr-12 my-8">
-          <div className="flex items-center">
-            <Button className="mr-3">Random</Button>
+        <div className="mb-[120px]">
+          <div className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#111111] duration-150">
+            <nav className="flex items-center text-center justify-between ml-32 mr-12 my-8">
+              <div className="flex items-center">
+                <Button className="mr-3">Random</Button>
 
-            <ThemeSwitch />
-            <MusicToggle />
-          </div>
-
-          <div className="flex items-center">
-            <HOS className="size-12 mr-3 rounded-lg" />
-
-            <div className="flex items-center">
-              <div
-                className="relative mr-8"
-                onMouseEnter={() => {
-                  setIsTitleHovered(!isTitleHovered);
-                  setCurrentTitleEasterEgg(
-                    titleEasterEggs[
-                      Math.floor(Math.random() * titleEasterEggs.length)
-                    ],
-                  );
-                }}
-                onMouseLeave={() => setIsTitleHovered(false)}
-              >
-                <p className="text-4xl blur-[10px] select-none animate-gradient">
-                  <strong>sqd's hall of shame</strong>
-                </p>
-
-                <p className="absolute inset-0 z-10 text-4xl select-none animate-gradient">
-                  <strong>sqd's hall of shame</strong>
-                </p>
+                <ThemeSwitch />
+                <MusicToggle />
               </div>
 
-              <div className="relative">
-                <p
-                  className={`w-10 blur-[10px] mt-0.5 text-[#eb5be8] text-lg select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
-                >
-                  <strong>{currentTitleEasterEgg}</strong>
-                </p>
+              <div className="flex items-center">
+                <HOS className="size-12 mr-3 rounded-lg" />
 
-                <p
-                  className={`absolute inset-0 z-10 w-10 mt-0.5 text-[#eb5be8] text-lg select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
-                >
-                  <strong>{currentTitleEasterEgg}</strong>
-                </p>
+                <div className="flex items-center">
+                  <div
+                    className="relative mr-8"
+                    onMouseEnter={() => {
+                      setIsTitleHovered(!isTitleHovered);
+                      setCurrentTitleEasterEgg(
+                        titleEasterEggs[
+                          Math.floor(Math.random() * titleEasterEggs.length)
+                        ],
+                      );
+                    }}
+                    onMouseLeave={() => setIsTitleHovered(false)}
+                  >
+                    <p className="text-4xl blur-[10px] select-none animate-gradient">
+                      <strong>sqd's hall of shame</strong>
+                    </p>
+
+                    <p className="absolute inset-0 z-10 text-4xl select-none animate-gradient">
+                      <strong>sqd's hall of shame</strong>
+                    </p>
+                  </div>
+
+                  <div className="relative">
+                    <p
+                      className={`w-20 blur-[10px] text-[#970e94] dark:text-[#eb5be8] text-2xl select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
+                    >
+                      <strong>{currentTitleEasterEgg}</strong>
+                    </p>
+
+                    <p
+                      className={`absolute inset-0 z-20 w-18 text-[#970e94] dark:text-[#eb5be8] text-lg select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
+                    >
+                      <strong>{currentTitleEasterEgg}</strong>
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
+            </nav>
           </div>
-        </nav>
+        </div>
       </DesktopBrowser>
 
       <MobileBrowser>

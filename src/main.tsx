@@ -10,11 +10,27 @@ setInterval(() => {
       window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     document.documentElement.classList.add("dark", "bg-[#111111]");
+    document.documentElement.style.setProperty(
+      "--scrollbar-track-color",
+      "#212121",
+    );
+    document.documentElement.style.setProperty(
+      "--scrollbar-thumb-color",
+      "#f2f2f2",
+    );
     localStorage.setItem("theme", "dark");
     return;
   }
 
   document.documentElement.classList.remove("dark", "bg-[#111111]");
+  document.documentElement.style.setProperty(
+    "--scrollbar-track-color",
+    "#979797",
+  );
+  document.documentElement.style.setProperty(
+    "--scrollbar-thumb-color",
+    "#3b3b3b",
+  );
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

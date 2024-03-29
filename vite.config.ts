@@ -8,10 +8,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/cdn":
-        "https://add5-2409-40e5-13-8744-6ea6-d198-8d49-6030.ngrok-free.app/",
+        "https://c284-2409-40e5-92-8134-d0b0-81dd-177e-58a1.ngrok-free.app/",
       "/api": {
         target:
-          "https://add5-2409-40e5-13-8744-6ea6-d198-8d49-6030.ngrok-free.app/",
+          "https://c284-2409-40e5-92-8134-d0b0-81dd-177e-58a1.ngrok-free.app/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

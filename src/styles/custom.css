@@ -1,3 +1,8 @@
+:root {
+  --scrollbar-track-color: transparent;
+  --scrollbar-thumb-color: transparent;
+}
+
 .absolute-center {
   position: fixed;
   left: 50%;
@@ -35,11 +40,24 @@
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  animation: gradient 12.5s infinite linear;
+  animation: gradient 12.5s infinite linear reverse;
 }
 
 @keyframes gradient {
   to {
     background-position: 500% 0;
   }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--scrollbar-thumb-color);
 }
