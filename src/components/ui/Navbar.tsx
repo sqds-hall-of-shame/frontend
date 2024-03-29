@@ -74,9 +74,9 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <DesktopBrowser>
-        <div className="mb-[120px]">
-          <div className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#111111] duration-150">
-            <nav className="flex items-center text-center justify-between ml-32 mr-12 my-8">
+        <div className="mb-[150px]">
+          <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-white bg-opacity-[3%] duration-150 rounded-3xl">
+            <nav className="flex items-center text-center justify-between w-full my-8 ml-24">
               <div className="flex items-center">
                 <Button className="mr-3">Random</Button>
 
@@ -87,9 +87,9 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center">
                 <HOS className="size-12 mr-3 rounded-lg" />
 
-                <div className="flex items-center">
+                <div className="flex items-center text-center">
                   <div
-                    className="relative mr-8"
+                    className="relative mr-4 text-center"
                     onMouseEnter={() => {
                       setIsTitleHovered(!isTitleHovered);
                       setCurrentTitleEasterEgg(
@@ -109,15 +109,15 @@ export const Navbar: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="relative">
+                  <div className="relative mr-4">
                     <p
-                      className={`w-20 blur-[10px] text-[#970e94] dark:text-[#eb5be8] text-2xl select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
+                      className={`w-20 blur-[10px] text-[#eb5be8] text-2xl select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
                     >
                       <strong>{currentTitleEasterEgg}</strong>
                     </p>
 
                     <p
-                      className={`absolute inset-0 z-20 w-18 text-[#970e94] dark:text-[#eb5be8] text-lg select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
+                      className={`absolute inset-0 z-10 w-20 text-[#eb5be8] text-lg select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
                     >
                       <strong>{currentTitleEasterEgg}</strong>
                     </p>
