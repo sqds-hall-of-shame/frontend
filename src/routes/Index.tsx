@@ -45,12 +45,14 @@ export const Index: React.FC = () => {
                 frontend | feat: better navbar design
               </p>
               <p className="text-white">frontend | fix: icon drag</p>
+              <p className="text-white">backend | Third commit (pt.1)</p>
             </div>
 
             <div className="flex flex-col mt-4">
-              <p className="text-white">backend | Third commit (pt.1)</p>
               <p className="text-white">backend | Second commit (pt.2)</p>
               <p className="text-white">backend | Second commit (pt.1)</p>
+              <p className="text-white">backend | FIRST COMMIT (pt.2)</p>
+              <p className="text-white">backend | FIRST COMMIT (pt.1)</p>
             </div>
           </div>
         </div>
