@@ -1,5 +1,5 @@
 import { HOS } from "@/components/icons/HOS";
-import { Button } from "@/components/ui/Button";
+import { NavButton } from "@/components/ui/NavButton";
 import { DesktopBrowser } from "@/components/ui/DesktopBrowser";
 import { MobileBrowser } from "@/components/ui//MobileBrowser";
 import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
@@ -91,7 +91,7 @@ export const Navbar: React.FC = () => {
           <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-black bg-opacity-[75%] dark:bg-white dark:bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
             <nav className="flex items-center text-center justify-between w-full my-8 ml-24">
               <div className="flex items-center">
-                <Button className="mr-3">Random</Button>
+                <NavButton className="mr-3">Random</NavButton>
 
                 <ThemeSwitch />
                 <MusicToggle />
@@ -139,7 +139,7 @@ export const Navbar: React.FC = () => {
           <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-black bg-opacity-[75%] dark:bg-white dark:bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
             <nav className="flex items-center text-center justify-between w-full m-4">
               <div className="flex items-center">
-                <Button className="mr-3">Random</Button>
+                <NavButton className="mr-3">Random</NavButton>
 
                 <ThemeSwitch />
                 <MusicToggle />
