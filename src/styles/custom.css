@@ -57,3 +57,7 @@
     background-position: 500% 0;
   }
 }
+
+a {
+  @apply text-blue-600 hover:text-blue-700 duration-100;
+}
