@@ -6,11 +6,6 @@
   transform: translate(-50%, -50%);
 }
 
-.text-invert {
-  color: invert(1);
-  background-color: inherit;
-}
-
 @keyframes spin {
   to {
     transform: rotate(360deg);

@@ -4,9 +4,10 @@ import { DesktopBrowser } from "@/components/ui/DesktopBrowser";
 import { MobileBrowser } from "@/components/ui//MobileBrowser";
 import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
 import { MusicToggle } from "@/components/ui/MusicToggle";
-import { ScrollbarToggle } from "./ScrollbarToggle";
+import { ScrollbarToggle } from "@/components/ui/ScrollbarToggle";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ArrowPathIcon, XMarkIcon } from "@heroicons/react/16/solid";
 
 const titleEasterEggs = [
   ":3",
@@ -67,11 +68,17 @@ const titleEasterEggs = [
   "˶ᵔᵕᵔ˶",
 ];
 
-export const Navbar: React.FC = () => {
+interface Props {
+  onRandomClick: () => never | void;
+  onUnrandomClick: () => never | void;
+}
+
+export const Navbar: React.FC<Props> = (props: Props) => {
   const [isTitleHovered, setIsTitleHovered] = useState(false);
   const [currentTitleEasterEgg, setCurrentTitleEasterEgg] = useState(
     titleEasterEggs[Math.floor(Math.random() * titleEasterEggs.length)],
   );
+  const [random, setRandom] = useState(false);
 
   return (
     <>
@@ -91,7 +98,37 @@ export const Navbar: React.FC = () => {
           <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-black bg-opacity-[75%] dark:bg-white dark:bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
             <nav className="flex items-center text-center justify-between w-full my-8 ml-24">
               <div className="flex items-center">
-                <NavButton className="mr-3">Random</NavButton>
+                {random ? (
+                  <div className="flex items-center mr-3">
+                    <NavButton
+                      className="mr-1"
+                      onClick={() => {
+                        props.onRandomClick();
+                      }}
+                    >
+                      <ArrowPathIcon className="text-white size-4" />
+                    </NavButton>
+
+                    <NavButton
+                      onClick={() => {
+                        setRandom(false);
+                        props.onUnrandomClick();
+                      }}
+                    >
+                      <XMarkIcon className="text-white size-4" />
+                    </NavButton>
+                  </div>
+                ) : (
+                  <NavButton
+                    className="mr-3"
+                    onClick={() => {
+                      setRandom(true);
+                      props.onRandomClick();
+                    }}
+                  >
+                    Random
+                  </NavButton>
+                )}
 
                 <ThemeSwitch />
                 <MusicToggle />
@@ -113,7 +150,7 @@ export const Navbar: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className="relative mr-4">
+                    <div className="relative mr-4 mt-1">
                       <p
                         className={`w-20 blur-[10px] text-[#eb5be8] text-2xl select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
                       >

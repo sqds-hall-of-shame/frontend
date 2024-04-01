@@ -19,6 +19,13 @@ export interface Message {
   uploader: User;
 }
 
+export interface Statistics {
+  lastDatabaseUpdate: number;
+  lastMessage: number;
+  savedUsers: number;
+  savedMessages: number;
+}
+
 export const api = {
   messages: {
     pages: async (items: number): Promise<number> => {
@@ -85,6 +92,33 @@ export const api = {
 
       return messages;
     },
+
+    random: async (): Promise<Message> => {
+      const users = await api.users();
+      const response = await fetch("/api/random");
+
+      if (!response.ok) {
+        throw new APIError();
+      }
+
+      let finalMessage: Message | undefined;
+      const tmp = (await response.json()).payload.message;
+
+      for (const user of users) {
+        if (user.id === tmp.uploader.id) {
+          finalMessage = {
+            attachments: (await api.messages.attachments(tmp.id)) || [],
+            content: tmp.content,
+            timestamp: tmp.timestamp,
+            uploader: user,
+          };
+
+          break;
+        }
+      }
+
+      return finalMessage!;
+    },
   },
 
   users: async (): Promise<User[]> => {
@@ -105,6 +139,23 @@ export const api = {
     }
 
     return users;
+  },
+
+  statistics: async (): Promise<Statistics> => {
+    const response = await fetch("/api/statistics");
+
+    if (!response.ok) {
+      throw new APIError();
+    }
+
+    const resBody = await response.json();
+
+    return {
+      lastDatabaseUpdate: resBody.last_backup,
+      lastMessage: resBody.last_message,
+      savedUsers: resBody.saved_users,
+      savedMessages: resBody.saved_messages,
+    };
   },
 };
 

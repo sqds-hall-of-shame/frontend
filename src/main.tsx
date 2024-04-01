@@ -21,7 +21,7 @@ setInterval(() => {
   } else {
     extraStyleElement.innerHTML = "::-webkit-scrollbar { width: 0; }";
   }
-});
+}, 30);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

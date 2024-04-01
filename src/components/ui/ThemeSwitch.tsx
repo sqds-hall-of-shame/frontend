@@ -11,7 +11,10 @@ export const ThemeSwitch: React.FC<Props> = (props: Props) => {
     localStorage.getItem("theme") || "light",
   );
 
-  setInterval(() => setCurrentTheme(localStorage.getItem("theme") || "light"));
+  setInterval(
+    () => setCurrentTheme(localStorage.getItem("theme") || "light"),
+    30,
+  );
 
   return (
     <button
