@@ -12,6 +12,7 @@ import { MobileBrowser } from "@/components/ui/MobileBrowser";
 import { Navbar } from "@/components/ui/Navbar";
 import { Spinner } from "@/components/ui/Spinner";
 import { Statistics } from "@/components/ui/Statistics";
+import { ShareButton } from "@/components/ui/ShareButton";
 import { api, Message } from "@/utils/api";
 import { formatUnixTime } from "@/utils/formatUnixTime";
 import { isMobile } from "@/utils/isMobile";
@@ -59,7 +60,7 @@ export const Index: React.FC = () => {
 
   return (
     <>
-      <Navbar onTitleClick={() => setPage(1)} />
+      <Navbar onNavClick={() => setPage(1)} />
 
       <DesktopBrowser>
         <div className="mx-12 flex items-center">
@@ -122,6 +123,10 @@ export const Index: React.FC = () => {
                   <span className="text-sm text-neutral-800 dark:text-neutral-500">
                     {formatUnixTime(message.timestamp)}
                   </span>
+
+                  <div className="ml-1.5">
+                    <ShareButton message={message} />
+                  </div>
                 </p>
 
                 {message.content &&
@@ -158,6 +163,8 @@ export const Index: React.FC = () => {
         >
           <button
             onClick={() => {
+              api.science("navigated_previous_page");
+
               if (page <= 10) {
                 setPage(1);
                 return;
@@ -171,7 +178,10 @@ export const Index: React.FC = () => {
           </button>
 
           <button
-            onClick={() => page > 1 && setPage(page - 1)}
+            onClick={() => {
+              page > 1 && setPage(page - 1);
+              api.science("navigated_previous_page");
+            }}
             className="mr-2 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
           >
             <ChevronLeftIcon className="size-6 text-white" />
@@ -206,7 +216,10 @@ export const Index: React.FC = () => {
           </p>
 
           <button
-            onClick={() => page < pages && setPage(page + 1)}
+            onClick={() => {
+              page < pages && setPage(page + 1);
+              api.science("navigated_next_page");
+            }}
             className="ml-2 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
           >
             <ChevronRightIcon className="size-6 text-white" />
@@ -214,6 +227,8 @@ export const Index: React.FC = () => {
 
           <button
             onClick={() => {
+              api.science("navigated_next_page");
+
               if (page + 10 >= pages) {
                 setPage(pages);
                 return;

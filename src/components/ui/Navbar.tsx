@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowPathIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { HOS } from "@/components/icons/HOS";
 import { NavButton } from "@/components/ui/NavButton";
 import { DesktopBrowser } from "@/components/ui/DesktopBrowser";
@@ -6,9 +9,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { MusicToggle } from "@/components/ui/MusicToggle";
 import { ScrollbarToggle } from "@/components/ui/ScrollbarToggle";
 import { TimeFormatToggle } from "@/components/ui/TimeFormatToggle";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowPathIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import { api } from "@/utils/api";
 
 const titleEasterEggs = [
   ":3",
@@ -71,12 +72,12 @@ const titleEasterEggs = [
 
 interface Props {
   onRandom?: () => never | void;
-  onTitleClick?: () => never | void;
+  onNavClick?: () => never | void;
 }
 
 export const Navbar: React.FC<Props> = (props: Props) => {
-  const [isTitleHovered, setIsTitleHovered] = useState(false);
-  const [currentTitleEasterEgg, setCurrentTitleEasterEgg] = useState(
+  const [isNavHovered, setIsNavHovered] = useState(false);
+  const [currentNavEasterEgg, setCurrentNavEasterEgg] = useState(
     titleEasterEggs[Math.floor(Math.random() * titleEasterEggs.length)],
   );
 
@@ -86,21 +87,28 @@ export const Navbar: React.FC<Props> = (props: Props) => {
         <div
           className="mb-[150px]"
           onMouseEnter={() => {
-            setIsTitleHovered(!isTitleHovered);
-            setCurrentTitleEasterEgg(
+            api.science("hovered_on_nav");
+            setIsNavHovered(!isNavHovered);
+            setCurrentNavEasterEgg(
               titleEasterEggs[
                 Math.floor(Math.random() * titleEasterEggs.length)
               ],
             );
           }}
-          onMouseLeave={() => setIsTitleHovered(false)}
+          onMouseLeave={() => setIsNavHovered(false)}
         >
           <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-black bg-opacity-[75%] dark:bg-white dark:bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
             <nav className="flex items-center text-center justify-between w-full my-8 ml-24">
               <div className="flex items-center">
                 {window.location.pathname === "/random" ? (
                   <div className="flex items-center mr-3">
-                    <NavButton className="mr-1" onClick={props.onRandom}>
+                    <NavButton
+                      className="mr-1"
+                      onClick={() => {
+                        api.science("clicked_random");
+                        props.onRandom && props.onRandom();
+                      }}
+                    >
                       <ArrowPathIcon className="text-white size-4" />
                     </NavButton>
 
@@ -111,7 +119,10 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                     </Link>
                   </div>
                 ) : (
-                  <Link to="/random">
+                  <Link
+                    to="/random"
+                    onClick={() => api.science("clicked_random")}
+                  >
                     <NavButton className="mr-3">Random</NavButton>
                   </Link>
                 )}
@@ -122,7 +133,7 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                 <TimeFormatToggle />
               </div>
 
-              <Link to="/" onClick={props.onTitleClick}>
+              <Link to="/" onClick={props.onNavClick}>
                 <div className="flex items-center">
                   <HOS className="size-12 mr-3 rounded-lg" />
 
@@ -139,15 +150,15 @@ export const Navbar: React.FC<Props> = (props: Props) => {
 
                     <div className="relative mr-4 mt-1">
                       <p
-                        className={`w-20 blur-[10px] text-[#eb5be8] text-2xl select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
+                        className={`w-20 blur-[10px] text-[#eb5be8] text-2xl select-none transition-opacity duration-150 ${isNavHovered ? "opacity-100" : "opacity-0"}`}
                       >
-                        <strong>{currentTitleEasterEgg}</strong>
+                        <strong>{currentNavEasterEgg}</strong>
                       </p>
 
                       <p
-                        className={`absolute inset-0 z-10 w-20 text-[#eb5be8] text-lg select-none transition-opacity duration-150 ${isTitleHovered ? "opacity-100" : "opacity-0"}`}
+                        className={`absolute inset-0 z-10 w-20 text-[#eb5be8] text-lg select-none transition-opacity duration-150 ${isNavHovered ? "opacity-100" : "opacity-0"}`}
                       >
-                        <strong>{currentTitleEasterEgg}</strong>
+                        <strong>{currentNavEasterEgg}</strong>
                       </p>
                     </div>
                   </div>
@@ -186,7 +197,7 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                 <TimeFormatToggle />
               </div>
 
-              <Link to="/" onClick={props.onTitleClick}>
+              <Link to="/" onClick={props.onNavClick}>
                 <HOS className="size-12 mr-3 rounded-lg" />
               </Link>
             </nav>

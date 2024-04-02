@@ -1,5 +1,6 @@
 import { MusicalNoteIcon } from "@heroicons/react/16/solid";
 import { isMobile } from "@/utils/isMobile";
+import { api } from "@/utils/api";
 
 export const MusicToggle: React.FC = () => (
   <button
@@ -10,8 +11,10 @@ export const MusicToggle: React.FC = () => (
 
       if (music.paused) {
         music.play();
+        api.science("music_play");
       } else {
         music.pause();
+        api.science("music_stop");
       }
     }}
     className="cursor-pointer"

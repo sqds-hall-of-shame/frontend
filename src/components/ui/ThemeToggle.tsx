@@ -1,12 +1,9 @@
 import { SunIcon, MoonIcon } from "@heroicons/react/16/solid";
 import { useState } from "react";
 import { isMobile } from "@/utils/isMobile";
+import { api } from "@/utils/api";
 
-interface Props {
-  onClick?: () => never | void;
-}
-
-export const ThemeToggle: React.FC<Props> = (props: Props) => {
+export const ThemeToggle: React.FC = () => {
   const [currentTheme, setCurrentTheme] = useState(
     localStorage.getItem("theme") || "light",
   );
@@ -24,9 +21,7 @@ export const ThemeToggle: React.FC<Props> = (props: Props) => {
           currentTheme === "dark" ? "light" : "dark",
         );
 
-        if (props.onClick) {
-          props.onClick();
-        }
+        api.science(localStorage.getItem("theme") + "_mode");
       }}
       className="cursor-pointer"
     >
