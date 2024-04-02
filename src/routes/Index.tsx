@@ -54,6 +54,7 @@ export const Index: React.FC = () => {
         setLoadState(LoadState.ERROR);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, navigate]);
 
   return (
