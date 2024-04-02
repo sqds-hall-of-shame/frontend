@@ -15,4 +15,18 @@ export default defineConfig({
       },
     },
   },
+
+  preview: {
+    proxy: {
+      "/cdn": "http://localhost:8080/",
+      "/api": {
+        target: "http://localhost:8080/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+
+    port: 80,
+    strictPort: true,
+  },
 });
