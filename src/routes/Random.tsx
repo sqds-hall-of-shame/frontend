@@ -91,7 +91,9 @@ export const Random: React.FC = () => {
           <Spinner />
         </div>
       ) : (
-        <div className={`${isMobile() ? "mx-3" : "mx-12"} my-4`}>
+        <div
+          className={`${isMobile() ? "mx-3" : "mx-12"} my-4 bg-black bg-opacity-[10%] dark:bg-white dark:bg-opacity-[3%] p-3 rounded-lg`}
+        >
           <div className="mb-4 flex items-start">
             <img
               src={randomMessage.uploader.avatar}
