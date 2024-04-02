@@ -93,8 +93,8 @@ export const Random: React.FC = () => {
           <div className="mb-4 flex items-start">
             <img
               src={randomMessage.uploader.avatar}
-              width={48}
-              height={48}
+              width={isMobile() ? 32 : 48}
+              height={isMobile() ? 32 : 48}
               className="mr-2 rounded-full"
             />
 

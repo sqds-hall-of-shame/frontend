@@ -104,8 +104,8 @@ export const Index: React.FC = () => {
             <div className="mb-4 flex items-start">
               <img
                 src={message.uploader.avatar}
-                width={48}
-                height={48}
+                width={isMobile() ? 32 : 48}
+                height={isMobile() ? 32 : 48}
                 className="mr-2 rounded-full"
               />
 
@@ -151,70 +151,81 @@ export const Index: React.FC = () => {
       )}
 
       <div
-        className={`fixed bottom-3 right-3 ${isMobile() ? "py-1.5 px-3" : "p-3 px-8"} inline-flex z-50 bg-black bg-opacity-[50%] dark:bg-white dark:bg-opacity-[10%] duration-150 rounded-xl backdrop-filter backdrop-blur-[8px]`}
+        className={`fixed bottom-3 ${isMobile() ? "left-0 right-0" : "right-3"} flex justify-center`}
       >
-        <button
-          onClick={() => {
-            if (page <= 10) {
-              setPage(1);
-              return;
-            }
-
-            setPage(page - 10);
-          }}
-          className="mr-1 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
+        <div
+          className={`${isMobile() ? "py-1.5 px-3" : "p-3 px-8"} inline-flex z-50 bg-black bg-opacity-[50%] dark:bg-white dark:bg-opacity-[10%] duration-150 rounded-xl backdrop-filter backdrop-blur-[8px]`}
         >
-          <ChevronDoubleLeftIcon className="size-6 text-white" />
-        </button>
-
-        <button
-          onClick={() => page > 1 && setPage(page - 1)}
-          className="mr-2 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
-        >
-          <ChevronLeftIcon className="size-6 text-white" />
-        </button>
-
-        <p className="text-lg text-white">
-          Page{" "}
-          <input
-            type="text"
-            className="bg-neutral-800 dark:bg-neutral-700 rounded-lg border border-neutral-500 w-10 text-center"
-            pattern="^[0-9]*$"
-            onInput={(event) => {
-              const target = event.target as HTMLInputElement;
-
-              if (Number(target.value) > pages || Number(target.value) === 0) {
-                target.value = String(page);
+          <button
+            onClick={() => {
+              if (page <= 10) {
+                setPage(1);
                 return;
               }
 
-              setPage(Number(target.value));
+              setPage(page - 10);
             }}
-            value={page}
-          />{" "}
-          of {pages}
-        </p>
+            className="mr-1 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
+          >
+            <ChevronDoubleLeftIcon className="size-6 text-white" />
+          </button>
 
-        <button
-          onClick={() => page < pages && setPage(page + 1)}
-          className="ml-2 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
-        >
-          <ChevronRightIcon className="size-6 text-white" />
-        </button>
+          <button
+            onClick={() => page > 1 && setPage(page - 1)}
+            className="mr-2 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
+          >
+            <ChevronLeftIcon className="size-6 text-white" />
+          </button>
 
-        <button
-          onClick={() => {
-            if (page + 10 >= pages) {
-              setPage(pages);
-              return;
-            }
+          <p className="text-lg text-white">
+            Page{" "}
+            <input
+              type="text"
+              className="bg-neutral-800 dark:bg-neutral-700 rounded-lg border border-neutral-500 w-10 text-center"
+              onBlur={(event) => {
+                const target = event.target as HTMLInputElement;
 
-            setPage(page + 10);
-          }}
-          className="ml-1 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
-        >
-          <ChevronDoubleRightIcon className="size-6 text-white" />
-        </button>
+                if (!target.value.match(/^[0-9]*$/)) {
+                  target.value = String(page);
+                  return;
+                }
+
+                if (
+                  Number(target.value) > pages ||
+                  Number(target.value) === 0
+                ) {
+                  target.value = String(page);
+                  return;
+                }
+
+                setPage(Number(target.value));
+              }}
+              defaultValue={page}
+            />{" "}
+            of {pages}
+          </p>
+
+          <button
+            onClick={() => page < pages && setPage(page + 1)}
+            className="ml-2 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
+          >
+            <ChevronRightIcon className="size-6 text-white" />
+          </button>
+
+          <button
+            onClick={() => {
+              if (page + 10 >= pages) {
+                setPage(pages);
+                return;
+              }
+
+              setPage(page + 10);
+            }}
+            className="ml-1 px-1 rounded-xl bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-700 dark:hover:bg-neutral-600 duration-100"
+          >
+            <ChevronDoubleRightIcon className="size-6 text-white" />
+          </button>
+        </div>
       </div>
     </>
   );
