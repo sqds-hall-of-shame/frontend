@@ -10,7 +10,7 @@ export const FreeRobuxObbyRobloxRobuxFreeRoboxApp: React.FC = () => (
       <strong className="mx-1">baluwuhost</strong>&
       <Link
         to="/free-robux-obby-roblox-robux-free-robox-app"
-        className="ml-1 text-blue-600 hover:text-blue-500"
+        className="ml-1 text-[#14eb08] hover:text-[#13eb08ad]"
       >
         Free robux obby roblox robux free robox app
       </Link>

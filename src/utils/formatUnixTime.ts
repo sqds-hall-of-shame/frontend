@@ -25,10 +25,12 @@ export const formatUnixTime = (unixTime: number) => {
   }
 
   const day = date.getDate();
-  const month = date.toLocaleString("default", { month: "short" });
+  const month = date.toLocaleString("default", { month: "long" });
   const year = date.getFullYear();
 
-  return day + " " + month + " " + year;
+  return (
+    day + " " + month + " " + year + " " + hours + ":" + minutes + " " + amPm
+  );
 };
 
 export default formatUnixTime;

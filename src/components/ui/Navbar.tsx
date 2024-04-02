@@ -69,8 +69,8 @@ const titleEasterEggs = [
 ];
 
 interface Props {
-  onRandomClick: () => never | void;
-  onUnrandomClick: () => never | void;
+  onRandom?: () => never | void;
+  onTitleClick?: () => never | void;
 }
 
 export const Navbar: React.FC<Props> = (props: Props) => {
@@ -78,7 +78,6 @@ export const Navbar: React.FC<Props> = (props: Props) => {
   const [currentTitleEasterEgg, setCurrentTitleEasterEgg] = useState(
     titleEasterEggs[Math.floor(Math.random() * titleEasterEggs.length)],
   );
-  const [random, setRandom] = useState(false);
 
   return (
     <>
@@ -98,36 +97,22 @@ export const Navbar: React.FC<Props> = (props: Props) => {
           <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-black bg-opacity-[75%] dark:bg-white dark:bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
             <nav className="flex items-center text-center justify-between w-full my-8 ml-24">
               <div className="flex items-center">
-                {random ? (
+                {window.location.pathname === "/random" ? (
                   <div className="flex items-center mr-3">
-                    <NavButton
-                      className="mr-1"
-                      onClick={() => {
-                        props.onRandomClick();
-                      }}
-                    >
+                    <NavButton className="mr-1" onClick={props.onRandom}>
                       <ArrowPathIcon className="text-white size-4" />
                     </NavButton>
 
-                    <NavButton
-                      onClick={() => {
-                        setRandom(false);
-                        props.onUnrandomClick();
-                      }}
-                    >
-                      <XMarkIcon className="text-white size-4" />
-                    </NavButton>
+                    <Link to="/">
+                      <NavButton>
+                        <XMarkIcon className="text-white size-4" />
+                      </NavButton>
+                    </Link>
                   </div>
                 ) : (
-                  <NavButton
-                    className="mr-3"
-                    onClick={() => {
-                      setRandom(true);
-                      props.onRandomClick();
-                    }}
-                  >
-                    Random
-                  </NavButton>
+                  <Link to="/random">
+                    <NavButton className="mr-3">Random</NavButton>
+                  </Link>
                 )}
 
                 <ThemeSwitch />
@@ -135,7 +120,7 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                 <ScrollbarToggle />
               </div>
 
-              <Link to="/">
+              <Link to="/" onClick={props.onTitleClick}>
                 <div className="flex items-center">
                   <HOS className="size-12 mr-3 rounded-lg" />
 
@@ -182,7 +167,9 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                 <MusicToggle />
               </div>
 
-              <HOS className="size-12 mr-3 rounded-lg" />
+              <Link to="/">
+                <HOS className="size-12 mr-3 rounded-lg" />
+              </Link>
             </nav>
           </div>
         </div>

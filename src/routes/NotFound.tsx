@@ -1,5 +1,5 @@
 export const NotFound: React.FC = () => (
-  <div className="absolute-center">
+  <div className="h-screen flex justify-center items-center">
     <p className="text-6xl text-red-600">404</p>
   </div>
 );
