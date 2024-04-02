@@ -30,7 +30,7 @@ enum LoadState {
 export const Index: React.FC = () => {
   const [loadState, setLoadState] = useState(LoadState.LOADING);
   const [pages, setPages] = useState(0);
-  const [page, realSetPage] = useState(1);
+  const [page, realSetPage] = useState(Number(getParam("page") || 1));
   const [messages, setMessages] = useState<Message[]>([]);
 
   const setPage = (value: number) => {
@@ -43,16 +43,15 @@ export const Index: React.FC = () => {
 
   useEffect(() => {
     setLoadState(LoadState.LOADING);
+    navigate("/");
 
     (async () => {
       try {
-        setPages(await api.messages.pages(items));
+        const apiPages = await api.messages.pages(items);
+        setPages(apiPages);
 
-        if (window.location.search) {
-          const num = Number(getParam("page") || 1);
-
-          setPage(num >= 1 && num <= pages ? num : 1);
-          navigate("/");
+        if (page > apiPages || page <= 0) {
+          setPage(1);
         }
 
         setMessages(await api.messages.call(items, page));
@@ -66,7 +65,7 @@ export const Index: React.FC = () => {
 
   return (
     <>
-      <Navbar onNavClick={() => setPage(1)} />
+      <Navbar onNavClick={() => setPage(1)} page={page} />
 
       <DesktopBrowser>
         <div className="mx-12 flex items-center">

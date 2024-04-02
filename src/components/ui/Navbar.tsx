@@ -73,6 +73,7 @@ const titleEasterEggs = [
 interface Props {
   onRandom?: () => never | void;
   onNavClick?: () => never | void;
+  page?: number;
 }
 
 export const Navbar: React.FC<Props> = (props: Props) => {
@@ -130,7 +131,7 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                 <ThemeToggle />
                 <MusicToggle />
                 <ScrollbarToggle />
-                <TimeFormatToggle />
+                <TimeFormatToggle page={props.page} />
               </div>
 
               <Link to="/" onClick={props.onNavClick}>
@@ -194,7 +195,7 @@ export const Navbar: React.FC<Props> = (props: Props) => {
 
                 <ThemeToggle />
                 <MusicToggle />
-                <TimeFormatToggle />
+                <TimeFormatToggle page={props.page} />
               </div>
 
               <Link to="/" onClick={props.onNavClick}>
