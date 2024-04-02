@@ -13,6 +13,7 @@ import { Navbar } from "@/components/ui/Navbar";
 import { Spinner } from "@/components/ui/Spinner";
 import { Statistics } from "@/components/ui/Statistics";
 import { ShareButton } from "@/components/ui/ShareButton";
+import { AutoLinkText } from "@/components/ui/AutoLinkText";
 import { api, Message } from "@/utils/api";
 import { formatUnixTime } from "@/utils/formatUnixTime";
 import { isMobile } from "@/utils/isMobile";
@@ -141,9 +142,10 @@ export const Index: React.FC = () => {
                       className="rounded-lg mb-1.5"
                     />
                   ) : (
-                    <p className="dark:text-white text-black">
-                      {message.content}
-                    </p>
+                    <AutoLinkText
+                      className="dark:text-white text-black"
+                      text={message.content}
+                    />
                   ))}
 
                 {message.attachments.map((attachment) => (

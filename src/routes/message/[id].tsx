@@ -1,6 +1,7 @@
 import { DesktopBrowser } from "@/components/ui/DesktopBrowser";
 import { MobileBrowser } from "@/components/ui/MobileBrowser";
 import { Spinner } from "@/components/ui/Spinner";
+import { AutoLinkText } from "@/components/ui/AutoLinkText";
 import { api, Message } from "@/utils/api";
 import { formatUnixTime } from "@/utils/formatUnixTime";
 import { isMobile } from "@/utils/isMobile";
@@ -126,9 +127,10 @@ export const MessageId: React.FC = () => {
                     className="rounded-lg mb-1.5"
                   />
                 ) : (
-                  <p className="dark:text-white text-black">
-                    {message.content}
-                  </p>
+                  <AutoLinkText
+                    className="dark:text-white text-black"
+                    text={message.content}
+                  />
                 ))}
 
               {message.attachments.map((attachment) => (
