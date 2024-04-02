@@ -14,6 +14,7 @@ import { Statistics } from "@/components/ui/Statistics";
 import { api, Message } from "@/utils/api";
 import { formatUnixTime } from "@/utils/formatUnixTime";
 import { isMobile } from "@/utils/isMobile";
+import { isURL } from "@/utils/isURL";
 
 const items = 10;
 
@@ -120,11 +121,17 @@ export const Index: React.FC = () => {
                 </span>
               </p>
 
-              {randomMessage.content && (
-                <p className="dark:text-white text-black">
-                  {randomMessage.content}
-                </p>
-              )}
+              {randomMessage.content &&
+                (isURL(randomMessage.content.trim()) ? (
+                  <img
+                    src={randomMessage.content.trim()}
+                    className="rounded-lg mb-1.5"
+                  />
+                ) : (
+                  <p className="dark:text-white text-black">
+                    {randomMessage.content}
+                  </p>
+                ))}
 
               {randomMessage.attachments.map((attachment) => (
                 <img
@@ -165,11 +172,17 @@ export const Index: React.FC = () => {
                   </span>
                 </p>
 
-                {message.content && (
-                  <p className="dark:text-white text-black">
-                    {message.content}
-                  </p>
-                )}
+                {message.content &&
+                  (isURL(message.content.trim()) ? (
+                    <img
+                      src={message.content.trim()}
+                      className="rounded-lg mb-1.5"
+                    />
+                  ) : (
+                    <p className="dark:text-white text-black">
+                      {message.content}
+                    </p>
+                  ))}
 
                 {message.attachments.map((attachment) => (
                   <img
