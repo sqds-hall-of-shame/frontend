@@ -2,9 +2,10 @@ import { HOS } from "@/components/icons/HOS";
 import { NavButton } from "@/components/ui/NavButton";
 import { DesktopBrowser } from "@/components/ui/DesktopBrowser";
 import { MobileBrowser } from "@/components/ui//MobileBrowser";
-import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { MusicToggle } from "@/components/ui/MusicToggle";
 import { ScrollbarToggle } from "@/components/ui/ScrollbarToggle";
+import { TimeFormatToggle } from "@/components/ui/TimeFormatToggle";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowPathIcon, XMarkIcon } from "@heroicons/react/16/solid";
@@ -115,9 +116,10 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                   </Link>
                 )}
 
-                <ThemeSwitch />
+                <ThemeToggle />
                 <MusicToggle />
                 <ScrollbarToggle />
+                <TimeFormatToggle />
               </div>
 
               <Link to="/" onClick={props.onTitleClick}>
@@ -179,8 +181,9 @@ export const Navbar: React.FC<Props> = (props: Props) => {
                   </Link>
                 )}
 
-                <ThemeSwitch />
+                <ThemeToggle />
                 <MusicToggle />
+                <TimeFormatToggle />
               </div>
 
               <Link to="/" onClick={props.onTitleClick}>

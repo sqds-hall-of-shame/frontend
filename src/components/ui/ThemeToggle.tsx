@@ -6,7 +6,7 @@ interface Props {
   onClick?: () => never | void;
 }
 
-export const ThemeSwitch: React.FC<Props> = (props: Props) => {
+export const ThemeToggle: React.FC<Props> = (props: Props) => {
   const [currentTheme, setCurrentTheme] = useState(
     localStorage.getItem("theme") || "light",
   );
@@ -43,4 +43,4 @@ export const ThemeSwitch: React.FC<Props> = (props: Props) => {
   );
 };
 
-export default ThemeSwitch;
+export default ThemeToggle;
