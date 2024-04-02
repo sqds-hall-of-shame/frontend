@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ChevronLeftIcon,
   ChevronDoubleLeftIcon,
@@ -15,6 +16,7 @@ import { api, Message } from "@/utils/api";
 import { formatUnixTime } from "@/utils/formatUnixTime";
 import { isMobile } from "@/utils/isMobile";
 import { isURL } from "@/utils/isURL";
+import { getParam } from "@/utils/getParam";
 
 const items = 10;
 
@@ -30,19 +32,29 @@ export const Index: React.FC = () => {
   const [page, setPage] = useState(1);
   const [messages, setMessages] = useState<Message[]>([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setLoadState(LoadState.LOADING);
 
     (async () => {
       try {
         setPages(await api.messages.pages(items));
+
+        if (window.location.search) {
+          const num = Number(getParam("page") || 1);
+
+          setPage(num >= 1 && num <= pages ? num : 1);
+          navigate("/");
+        }
+
         setMessages(await api.messages.call(items, page));
         setLoadState(LoadState.DONE);
       } catch {
         setLoadState(LoadState.ERROR);
       }
     })();
-  }, [page]);
+  }, [page, navigate]);
 
   return (
     <>

@@ -26,6 +26,8 @@ export const Random: React.FC = () => {
   });
 
   useEffect(() => {
+    setLoadState(LoadState.LOADING);
+
     (async () => {
       try {
         setRandomMessage(await api.messages.random());
@@ -47,7 +49,6 @@ export const Random: React.FC = () => {
             setLoadState(LoadState.DONE);
           } catch {
             setLoadState(LoadState.ERROR);
-            return;
           }
         }}
       />

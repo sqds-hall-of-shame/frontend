@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Router from "./Router.tsx";
+import { strictMode } from "../config";
 import "./styles/index.css";
 
 const extraStyleElement = document.getElementById(
@@ -24,7 +25,11 @@ setInterval(() => {
 }, 30);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  strictMode ? (
+    <React.StrictMode>
+      <Router />
+    </React.StrictMode>
+  ) : (
     <Router />
-  </React.StrictMode>,
+  ),
 );
