@@ -1,13 +1,12 @@
 export class APIError extends Error {}
 
 export interface Attachment {
-  filename: string;
-  contentType: string;
-  content: string;
+  height: number;
+  width: number;
+  url: string;
 }
 
 export interface User {
-  id: string;
   name: string;
   avatar: string;
 }
@@ -38,33 +37,7 @@ export const api = {
       return (await response.json()).payload.pages;
     },
 
-    attachments: async (id: string): Promise<Attachment[] | null> => {
-      const response = await fetch("/api/messages/" + id + "/attachments");
-
-      if (!response.ok) {
-        if ((await response.json()).payload.attachments === null) {
-          return null;
-        }
-
-        throw new APIError();
-      }
-
-      const attachments: Attachment[] = [];
-
-      for (const attachment of (await response.json()).payload.attachments) {
-        attachments.push({
-          filename: attachment.filename,
-          contentType: attachment.content_type,
-          content: attachment.content,
-        });
-      }
-
-      return attachments;
-    },
-
     call: async (items: number, page: number): Promise<Message[]> => {
-      const users = await api.users();
-
       const response = await fetch(
         "/api/messages?items=" + items + "&page=" + page,
       );
@@ -76,48 +49,57 @@ export const api = {
       const messages: Message[] = [];
 
       for (const message of (await response.json()).payload.messages) {
-        for (const user of users) {
-          if (user.id === message.uploader.id) {
-            messages.push({
-              attachments: (await api.messages.attachments(message.id)) || [],
-              content: message.content,
-              timestamp: message.timestamp,
-              uploader: user,
-            });
+        const attachments: Attachment[] = [];
 
-            break;
-          }
+        for (const attachment of message.attachments || []) {
+          attachments.push({
+            height: attachment.height,
+            width: attachment.width,
+            url: attachment.url,
+          });
         }
+
+        messages.push({
+          attachments,
+          content: message.content,
+          timestamp: message.timestamp,
+          uploader: {
+            name: message.uploader.display_name,
+            avatar: message.uploader.avatar,
+          },
+        });
       }
 
       return messages;
     },
 
     random: async (): Promise<Message> => {
-      const users = await api.users();
-      const response = await fetch("/api/random");
+      const response = await fetch("/api/messages/random");
 
       if (!response.ok) {
         throw new APIError();
       }
 
-      let finalMessage: Message | undefined;
-      const tmp = (await response.json()).payload.message;
+      const message = (await response.json()).payload.message;
+      const attachments: Attachment[] = [];
 
-      for (const user of users) {
-        if (user.id === tmp.uploader.id) {
-          finalMessage = {
-            attachments: (await api.messages.attachments(tmp.id)) || [],
-            content: tmp.content,
-            timestamp: tmp.timestamp,
-            uploader: user,
-          };
-
-          break;
-        }
+      for (const attachment of message.attachments || []) {
+        attachments.push({
+          height: attachment.height,
+          width: attachment.width,
+          url: attachment.url,
+        });
       }
 
-      return finalMessage!;
+      return {
+        attachments,
+        content: message.content,
+        timestamp: message.timestamp,
+        uploader: {
+          name: message.uploader.display_name,
+          avatar: message.uploader.avatar,
+        },
+      };
     },
   },
 
@@ -132,7 +114,6 @@ export const api = {
 
     for (const user of (await response.json()).payload.users) {
       users.push({
-        id: user.id,
         name: user.display_name,
         avatar: user.avatar,
       });

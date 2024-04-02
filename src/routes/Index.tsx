@@ -102,7 +102,7 @@ export const Index: React.FC = () => {
         <div className={`${isMobile() ? "mx-3" : "mx-12"} my-4`}>
           <div className="mb-4 flex items-start">
             <img
-              src={`data:image/webp;base64,${randomMessage.uploader.avatar}`}
+              src={randomMessage.uploader.avatar}
               width={48}
               height={48}
               className="mr-2 rounded-full"
@@ -128,8 +128,9 @@ export const Index: React.FC = () => {
 
               {randomMessage.attachments.map((attachment) => (
                 <img
-                  src={`data:${attachment.contentType};base64,${attachment.content}`}
-                  alt={attachment.filename}
+                  src={attachment.url}
+                  height={attachment.height}
+                  width={attachment.width}
                   className="rounded-lg mb-1.5"
                 />
               ))}
@@ -138,12 +139,12 @@ export const Index: React.FC = () => {
         </div>
       ) : (
         <div
-          className={`${isMobile() ? "mx-3" : "mx-12"} my-4 bg-black bg-opacity-[10%] p-3 rounded-lg`}
+          className={`${isMobile() ? "mx-3" : "mx-12"} my-4 bg-black bg-opacity-[10%] dark:bg-white dark:bg-opacity-[3%] p-3 rounded-lg`}
         >
           {messages.map((message) => (
             <div className="mb-4 flex items-start">
               <img
-                src={`data:image/webp;base64,${message.uploader.avatar}`}
+                src={message.uploader.avatar}
                 width={48}
                 height={48}
                 className="mr-2 rounded-full"
@@ -172,8 +173,9 @@ export const Index: React.FC = () => {
 
                 {message.attachments.map((attachment) => (
                   <img
-                    src={`data:${attachment.contentType};base64,${attachment.content}`}
-                    alt={attachment.filename}
+                    src={attachment.url}
+                    height={attachment.height}
+                    width={attachment.width}
                     className="rounded-lg mb-1.5"
                   />
                 ))}
