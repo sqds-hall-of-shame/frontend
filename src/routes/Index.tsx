@@ -30,8 +30,14 @@ enum LoadState {
 export const Index: React.FC = () => {
   const [loadState, setLoadState] = useState(LoadState.LOADING);
   const [pages, setPages] = useState(0);
-  const [page, setPage] = useState(1);
+  const [page, realSetPage] = useState(1);
   const [messages, setMessages] = useState<Message[]>([]);
+
+  const setPage = (value: number) => {
+    realSetPage(value);
+    (document.getElementById("page-input") as HTMLInputElement).value =
+      String(value);
+  };
 
   const navigate = useNavigate();
 
@@ -211,6 +217,7 @@ export const Index: React.FC = () => {
                 setPage(Number(target.value));
               }}
               defaultValue={page}
+              id="page-input"
             />{" "}
             of {pages}
           </p>
