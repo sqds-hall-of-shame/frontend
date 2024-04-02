@@ -161,13 +161,29 @@ export const Navbar: React.FC<Props> = (props: Props) => {
           <div className="flex justify-center items-center fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] z-50 bg-black bg-opacity-[75%] dark:bg-white dark:bg-opacity-[3%] duration-150 rounded-3xl border border-[#383838] backdrop-filter backdrop-blur-[8px]">
             <nav className="flex items-center text-center justify-between w-full m-4">
               <div className="flex items-center">
-                <NavButton className="mr-3">Random</NavButton>
+                {window.location.pathname === "/random" ? (
+                  <div className="flex items-center mr-3">
+                    <NavButton className="mr-1" onClick={props.onRandom}>
+                      <ArrowPathIcon className="text-white size-4" />
+                    </NavButton>
+
+                    <Link to="/">
+                      <NavButton>
+                        <XMarkIcon className="text-white size-4" />
+                      </NavButton>
+                    </Link>
+                  </div>
+                ) : (
+                  <Link to="/random">
+                    <NavButton className="mr-3">Random</NavButton>
+                  </Link>
+                )}
 
                 <ThemeSwitch />
                 <MusicToggle />
               </div>
 
-              <Link to="/">
+              <Link to="/" onClick={props.onTitleClick}>
                 <HOS className="size-12 mr-3 rounded-lg" />
               </Link>
             </nav>

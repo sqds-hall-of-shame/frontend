@@ -175,7 +175,24 @@ export const Index: React.FC = () => {
         </button>
 
         <p className="text-lg text-white">
-          Page {page} of {pages}
+          Page{" "}
+          <input
+            type="text"
+            className="bg-neutral-800 dark:bg-neutral-700 rounded-lg border border-neutral-500 w-10 text-center"
+            pattern="^[0-9]*$"
+            onInput={(event) => {
+              const target = event.target as HTMLInputElement;
+
+              if (Number(target.value) > pages || Number(target.value) === 0) {
+                target.value = String(page);
+                return;
+              }
+
+              setPage(Number(target.value));
+            }}
+            value={page}
+          />{" "}
+          of {pages}
         </p>
 
         <button

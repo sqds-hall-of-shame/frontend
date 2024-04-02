@@ -10,18 +10,18 @@ export const formatUnixTime = (unixTime: number) => {
   yesterdayDate.setDate(currentDate.getDate() - 1);
 
   let hours = date.getHours();
-  let minutes = date.getMinutes();
+  const minutes = date.getMinutes();
   const amPm = hours >= 12 ? "PM" : "AM";
   hours = hours % 12;
   hours = hours ? hours : 12;
-  minutes = minutes < 10 ? 0 + minutes : minutes;
+  const strMinutes = minutes < 10 ? `0${minutes}` : String(minutes);
 
   if (isSameDay(date, currentDate)) {
-    return "Today at " + hours + ":" + minutes + " " + amPm;
+    return "Today at " + hours + ":" + strMinutes + " " + amPm;
   }
 
   if (isSameDay(date, yesterdayDate)) {
-    return "Yesterday at " + hours + ":" + minutes + " " + amPm;
+    return "Yesterday at " + hours + ":" + strMinutes + " " + amPm;
   }
 
   const day = date.getDate();
@@ -29,7 +29,7 @@ export const formatUnixTime = (unixTime: number) => {
   const year = date.getFullYear();
 
   return (
-    day + " " + month + " " + year + " " + hours + ":" + minutes + " " + amPm
+    day + " " + month + " " + year + " " + hours + ":" + strMinutes + " " + amPm
   );
 };
 
