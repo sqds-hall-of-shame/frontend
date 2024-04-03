@@ -33,6 +33,7 @@ export const AutoLinkText: React.FC<Props> = ({ className, text }: Props) => {
       currentStringChunk += chunk + " ";
     }
 
+    accumulator.push(currentStringChunk);
     setContent(accumulator);
   }, [text]);
 
