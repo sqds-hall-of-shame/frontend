@@ -1,9 +1,13 @@
 export class APIError extends Error {}
 
 export interface Attachment {
+  filename: string;
+  content_type: string;
+  id: string;
+  spoiler: boolean;
   height: number;
   width: number;
-  url: string;
+  content: string;
 }
 
 export interface User {
@@ -46,18 +50,9 @@ export const api = {
       }
 
       const message = (await response.json()).payload.message;
-      const attachments: Attachment[] = [];
-
-      for (const attachment of message.attachments || []) {
-        attachments.push({
-          height: attachment.height,
-          width: attachment.width,
-          url: attachment.url,
-        });
-      }
 
       return {
-        attachments,
+        attachments: message.attachments,
         id: message.id,
         content: message.content,
         timestamp: message.timestamp,
@@ -80,18 +75,8 @@ export const api = {
       const messages: Message[] = [];
 
       for (const message of (await response.json()).payload.messages) {
-        const attachments: Attachment[] = [];
-
-        for (const attachment of message.attachments || []) {
-          attachments.push({
-            height: attachment.height,
-            width: attachment.width,
-            url: attachment.url,
-          });
-        }
-
         messages.push({
-          attachments,
+          attachments: message.attachments,
           id: message.id,
           content: message.content,
           timestamp: message.timestamp,
@@ -113,18 +98,9 @@ export const api = {
       }
 
       const message = (await response.json()).payload.message;
-      const attachments: Attachment[] = [];
-
-      for (const attachment of message.attachments || []) {
-        attachments.push({
-          height: attachment.height,
-          width: attachment.width,
-          url: attachment.url,
-        });
-      }
 
       return {
-        attachments,
+        attachments: message.attachments,
         id: message.id,
         content: message.content,
         timestamp: message.timestamp,

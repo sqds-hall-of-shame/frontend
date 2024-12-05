@@ -134,7 +134,7 @@ export const Random: React.FC = () => {
 
               {randomMessage.attachments.map((attachment) => (
                 <img
-                  src={attachment.url}
+                  src={`data:${attachment.content_type};base64,${attachment.content}`}
                   height={attachment.height}
                   width={attachment.width}
                   className="rounded-lg mb-1.5"
