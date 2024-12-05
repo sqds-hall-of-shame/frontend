@@ -148,14 +148,11 @@ export const api = {
     };
   },
 
-  science: (metric: string) =>
-    fetch("/api/science", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ metric }),
-    }),
+  science: (_: string) => {
+    // no more science
+    // i didnt remove this func cuz i didnt feel like finding
+    // all calls of this func and removing it myself
+  }
 };
 
 export default api;
