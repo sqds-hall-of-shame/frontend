@@ -25,7 +25,7 @@ export const Random: React.FC = () => {
     content: "",
     attachments: [],
     timestamp: 0,
-    uploader: { name: "", avatar: "" },
+    uploader: { name: "", id: "" },
   });
 
   useEffect(() => {
@@ -97,7 +97,7 @@ export const Random: React.FC = () => {
         >
           <div className="mb-4 flex items-start">
             <img
-              src={`data:image/webp;base64,${randomMessage.uploader.avatar}`}
+              src={`/avatars/${randomMessage.uploader.id}.webp`}
               width={isMobile() ? 32 : 48}
               height={isMobile() ? 32 : 48}
               className="mr-2 rounded-full"
@@ -134,7 +134,7 @@ export const Random: React.FC = () => {
 
               {randomMessage.attachments.map((attachment) => (
                 <img
-                  src={`data:${attachment.content_type};base64,${attachment.content}`}
+                  src={`/attachments/${attachment.id}/${attachment.filename}`}
                   height={attachment.height}
                   width={attachment.width}
                   className="rounded-lg mb-1.5"

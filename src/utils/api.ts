@@ -7,12 +7,11 @@ export interface Attachment {
   spoiler: boolean;
   height: number;
   width: number;
-  content: string;
 }
 
 export interface User {
   name: string;
-  avatar: string;
+  id: string;
 }
 
 export interface Message {
@@ -59,7 +58,7 @@ export const api = {
         timestamp: message.timestamp,
         uploader: {
           name: message.uploader.display_name,
-          avatar: message.uploader.avatar,
+          id: message.uploader.id,
         },
       };
     },
@@ -83,7 +82,7 @@ export const api = {
           timestamp: payload.message.timestamp,
           uploader: {
             name: payload.message.uploader.display_name,
-            avatar: payload.message.uploader.avatar,
+            id: payload.message.uploader.id,
           },
         });
       }
@@ -108,7 +107,7 @@ export const api = {
         timestamp: message.timestamp,
         uploader: {
           name: message.uploader.display_name,
-          avatar: message.uploader.avatar,
+          id: message.uploader.id,
         },
       };
     },
@@ -126,7 +125,7 @@ export const api = {
     for (const user of (await response.json()).payload.users) {
       users.push({
         name: user.display_name,
-        avatar: user.avatar,
+        id: user.id,
       });
     }
 

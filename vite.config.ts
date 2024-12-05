@@ -8,6 +8,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/cdn": "http://localhost:8080/",
+      "/attachments": "http://localhost:8080/",
+      "/avatars": "http://localhost:8080/",
       "/api": {
         target: "http://localhost:8080/",
         changeOrigin: true,
@@ -19,6 +21,8 @@ export default defineConfig({
   preview: {
     proxy: {
       "/cdn": "http://localhost:8080/",
+      "/attachments": "http://localhost:8080/",
+      "/avatars": "http://localhost:8080/",
       "/api": {
         target: "http://localhost:8080/",
         changeOrigin: true,

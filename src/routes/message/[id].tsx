@@ -25,7 +25,7 @@ export const MessageId: React.FC = () => {
     content: "",
     attachments: [],
     timestamp: 0,
-    uploader: { name: "", avatar: "" },
+    uploader: { name: "", id: "" },
   });
   const { id } = useParams();
 
@@ -102,7 +102,7 @@ export const MessageId: React.FC = () => {
         >
           <div className="flex items-start">
             <img
-              src={`data:image/webp;base64,${message.uploader.avatar}`}
+              src={`/avatars/${message.uploader.id}.webp`}
               width={isMobile() ? 32 : 48}
               height={isMobile() ? 32 : 48}
               className="mr-2 rounded-full"
@@ -135,7 +135,7 @@ export const MessageId: React.FC = () => {
 
               {message.attachments.map((attachment) => (
                 <img
-                  src={`data:${attachment.content_type};base64,${attachment.content}`}
+                  src={`/attachments/${attachment.id}/${attachment.filename}`}
                   height={attachment.height}
                   width={attachment.width}
                   className="rounded-lg"
