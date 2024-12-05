@@ -97,7 +97,7 @@ export const Random: React.FC = () => {
         >
           <div className="mb-4 flex items-start">
             <img
-              src={randomMessage.uploader.avatar}
+              src={`data:image/webp;base64,${randomMessage.uploader.avatar}`}
               width={isMobile() ? 32 : 48}
               height={isMobile() ? 32 : 48}
               className="mr-2 rounded-full"
@@ -138,6 +138,7 @@ export const Random: React.FC = () => {
                   height={attachment.height}
                   width={attachment.width}
                   className="rounded-lg mb-1.5"
+                  key={attachment.id}
                 />
               ))}
             </div>

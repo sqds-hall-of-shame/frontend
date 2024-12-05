@@ -108,7 +108,7 @@ export const Index: React.FC = () => {
           className={`${isMobile() ? "mx-3" : "mx-12"} my-4 bg-black bg-opacity-[10%] dark:bg-white dark:bg-opacity-[3%] p-3 rounded-lg`}
         >
           {messages.map((message) => (
-            <div className="mb-4 flex items-start">
+            <div className="mb-4 flex items-start" key={message.id}>
               <img
                 src={`data:image/webp;base64,${message.uploader.avatar}`}
                 width={isMobile() ? 32 : 48}
@@ -154,6 +154,7 @@ export const Index: React.FC = () => {
                     height={attachment.height}
                     width={attachment.width}
                     className="rounded-lg mb-1.5"
+                    key={attachment.id}
                   />
                 ))}
               </div>

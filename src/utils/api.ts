@@ -49,10 +49,11 @@ export const api = {
         throw new APIError();
       }
 
-      const message = (await response.json()).payload.message;
+      const payload = (await response.json()).payload;
+      const message = payload.message;
 
       return {
-        attachments: message.attachments,
+        attachments: payload.attachments,
         id: message.id,
         content: message.content,
         timestamp: message.timestamp,
@@ -74,15 +75,15 @@ export const api = {
 
       const messages: Message[] = [];
 
-      for (const message of (await response.json()).payload.messages) {
+      for (const payload of (await response.json()).payload.messages) {
         messages.push({
-          attachments: message.attachments,
-          id: message.id,
-          content: message.content,
-          timestamp: message.timestamp,
+          attachments: payload.attachments,
+          id: payload.message.id,
+          content: payload.message.content,
+          timestamp: payload.message.timestamp,
           uploader: {
-            name: message.uploader.display_name,
-            avatar: message.uploader.avatar,
+            name: payload.message.uploader.display_name,
+            avatar: payload.message.uploader.avatar,
           },
         });
       }
@@ -97,10 +98,11 @@ export const api = {
         throw new APIError();
       }
 
-      const message = (await response.json()).payload.message;
+      const payload = (await response.json()).payload;
+      const message = payload.message;
 
       return {
-        attachments: message.attachments,
+        attachments: payload.attachments,
         id: message.id,
         content: message.content,
         timestamp: message.timestamp,
