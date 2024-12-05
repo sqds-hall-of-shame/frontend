@@ -7,7 +7,6 @@ import { DesktopBrowser } from "@/components/ui/DesktopBrowser";
 import { MobileBrowser } from "@/components/ui//MobileBrowser";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { MusicToggle } from "@/components/ui/MusicToggle";
-import { ScrollbarToggle } from "@/components/ui/ScrollbarToggle";
 import { TimeFormatToggle } from "@/components/ui/TimeFormatToggle";
 import { api } from "@/utils/api";
 
@@ -130,7 +129,6 @@ export const Navbar: React.FC<Props> = (props: Props) => {
 
                 <ThemeToggle />
                 <MusicToggle />
-                <ScrollbarToggle />
                 <TimeFormatToggle page={props.page} />
               </div>
 

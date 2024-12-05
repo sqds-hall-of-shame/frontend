@@ -8,11 +8,6 @@ export const ThemeToggle: React.FC = () => {
     localStorage.getItem("theme") || "light",
   );
 
-  setInterval(
-    () => setCurrentTheme(localStorage.getItem("theme") || "light"),
-    30,
-  );
-
   return (
     <button
       onClick={() => {
@@ -20,6 +15,14 @@ export const ThemeToggle: React.FC = () => {
           "theme",
           currentTheme === "dark" ? "light" : "dark",
         );
+        setCurrentTheme(localStorage.getItem("theme") || "light");
+        if (localStorage.theme === "dark") {
+          document.documentElement.classList.add("dark", "bg-[#0a0a0a]");
+          document.documentElement.classList.remove("bg-gradient");
+        } else {
+          document.documentElement.classList.remove("dark", "bg-[#0a0a0a]");
+          document.documentElement.classList.add("bg-gradient");
+        }
 
         api.science(localStorage.getItem("theme") + "_mode");
       }}
